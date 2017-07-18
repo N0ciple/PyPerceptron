@@ -8,7 +8,7 @@ class Perceptron:
         # n+1 for bias
         self.weight = np.ones((self.n +1,1))
         # Learning rate
-        self.mu = 0.01
+        self.mu = 0.1
 
         # Initialize random weights
         for i in range(np.size(self.weight)):
@@ -26,4 +26,9 @@ class Perceptron:
     def train(self,point):
         inpt = np.concatenate((point.arr,[[1]]))
         error = point.label - self.predict(point.arr)
-        self.weight = self.weight + self.mu * error * inpt
+
+        #LMS Algo
+        #self.weight = self.weight + self.mu * error * inpt
+
+        #NLMS Algo
+        self.weight = self.weight + (1/np.linalg.norm(inpt))* self.mu * error * inpt

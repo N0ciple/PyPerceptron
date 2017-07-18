@@ -13,7 +13,7 @@ screen.fill([255, 255, 255])
 
 mypoint = list()
 
-for i in range(800):
+for i in range(50):
     #x = int(width * random() - width/2)
     #y = int(height * random() - height/2)
     x = random()*2-1
@@ -27,38 +27,37 @@ for i in range(800):
 for p in mypoint:
     p.drawPred(screen,size,circle_rad,my_perceptron.predict(p.arr))
 
-
-
+# Variables for the loop
 i=0
-
 prevtime = time.time()
+
 while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            pass
+
     if i < len(mypoint):
+        #train on a new point
         my_perceptron.train(mypoint[i])
+        i+=1
+
     else:
+        # if all the nodes are processed
         print('DONE')
-        exit(0)
-    #print(my_perceptron.weight)
-    #print(my_perceptron.weight[2])
-    i+=1
+
+
     for point in mypoint:
         result = my_perceptron.predict(point.arr)
         point.drawPred(screen, size, circle_rad,result)
 
+    # Compute the coeeficient of the line obtained by the perceptron
+    # y = a * x + b
     a = -float(my_perceptron.weight[0]) / float(my_perceptron.weight[1])
     b = -float(my_perceptron.weight[2]) / float(my_perceptron.weight[1])
 
-    if time.time() - prevtime > 3:
-        prevtime = time.time()
-        print("a = ", a)
-        print("b = ", b)
+
+    # Draw the curent classification line
     pt1 = MyPoint(-1, a*-1+b)
     pt2 = MyPoint(1, a*1+b)
-
     pygame.draw.line(screen,[255,255,0],pt1.convCord(size),pt2.convCord(size),5)
 
 

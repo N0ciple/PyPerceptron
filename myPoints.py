@@ -18,7 +18,7 @@ class MyPoint :
             self.label = -1
 
     def convCord(self,size):
-        return [int((self.x + 1 / 2)*size[0]), int((-self.y + 1 / 2)*size[1])]
+        return [int((self.x + 1 )*size[0]/2), int((-self.y + 1 )*size[1]/2)]
 
     def draw(self,my_screen,size,circle_rad):
         if self.label==1:
