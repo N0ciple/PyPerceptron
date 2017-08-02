@@ -8,7 +8,7 @@ class Perceptron:
         # n+1 for bias
         self.weight = np.ones((self.n +1,1))
         # Learning rate
-        self.mu = 0.1
+        self.mu = 0.05
 
         # Initialize random weights
         for i in range(np.size(self.weight)):
