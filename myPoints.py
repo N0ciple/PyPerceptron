@@ -1,8 +1,12 @@
 import numpy as np
 import pygame
+from random import random
+
+a = random()
+b = random()
 
 def f(point):
-    return 0.2*point.x >= point.y -0.2
+    return a*point.x >= point.y - b
 
 
 class MyPoint :
